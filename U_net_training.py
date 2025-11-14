@@ -1,4 +1,4 @@
-#TEM nanopore detection with Anti-overfitting measures (without all the bells and whistles)
+#TEM nanopore detection with Anti-overfitting measures
 import os
 import numpy as np
 import torch
