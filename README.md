@@ -24,17 +24,3 @@ Uses the trained model to predict nanopore regions on new TEM images.
 Performs post-detection analysis.
 
 All four notebooks/scripts can be run independently in Python (≥3.8) or a Jupyter environment.
-
-**How It Works**
-
-**Inputs**: TEM images (Fresnel-contrast mode) and user-defined binary masks marking nanopores.
-
-**Augmentation**: Each image–mask pair is augmented (15 transformations × 20 original images → ~640 total pairs).
-
-**Training**: A U-Net model is trained using the augmented dataset.
-
-**Detection**: New TEM images are analyzed to generate probability maps and binary pore masks.
-
-**Analysis**: Detected pores are characterized by aspect ratio, size, and porosity.
-
-This workflow allows contrast-based nanopore detection and basic quantitative analysis of microstructural features such as pore shape and interconnectivity.
