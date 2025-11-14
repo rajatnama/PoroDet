@@ -10,17 +10,17 @@ This repository consists of four standalone Python scripts / Jupyter notebooks.
 
 **Each script corresponds to one stage of the nanopore-detection workflow:**
 
-**tem_image_augmentation.py**
+**Data_augmentation.py**
 Augments the TEM images and masks through changes in brightness, contrast, rotation, and noise to improve model robustness under different Fresnel-contrast conditions.
 
-**train_nanopore_detector.py**
+**U-net_training.py**
 Trains a U-Net CNN using the augmented image–mask pairs.
 The network learns to distinguish nanopores from the surrounding oxide microstructure.
 
-**nanopore_detector.py**
+**Nanoporosty_detector.py**
 Uses the trained model to predict nanopore regions on new TEM images.
 
-**nanopore_analyzer.py**
+**Nanoporosity_analyzer.py**
 Performs post-detection analysis.
 
 All four notebooks/scripts can be run independently in Python (≥3.8) or a Jupyter environment.
