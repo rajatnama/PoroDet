@@ -56,16 +56,15 @@ def augment_images(input_dir, output_dir, num_augmentations=15): # Optimize the 
     print(f"Generating {num_augmentations} augmentations for each image")
     
     for image_file in tqdm(image_files, desc="Processing Images"):
-        # Extract image name without extension
         image_name = os.path.splitext(image_file)[0]
         
-        # Check if mask exists
+        # Check if binary mask images exists
         mask_file = f"{image_name}_mask.png"
         if mask_file not in all_files:
-            print(f"Warning: Mask not found for {image_file}, skipping")
+            print(f"Warning: Mask image not found for {image_file}, skipping")
             continue
         
-        # Read image and mask
+        # Read raw and mask images
         image_path = os.path.join(input_dir, image_file)
         mask_path = os.path.join(input_dir, mask_file)
         
@@ -73,7 +72,7 @@ def augment_images(input_dir, output_dir, num_augmentations=15): # Optimize the 
         mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
         
         if image is None or mask is None:
-            print(f"Error reading image or mask: {image_file}")
+            print(f"Error reading raw and mask images: {image_file}")
             continue
         
         # Save original image and mask to output directory
@@ -82,7 +81,7 @@ def augment_images(input_dir, output_dir, num_augmentations=15): # Optimize the 
         
         # Create augmentations
         for aug_idx in range(num_augmentations):
-            # Select augmentation (cycling through the list or random)
+            # Select augmentation
             transform = augmentations[aug_idx % len(augmentations)]
             
             # Apply augmentation
@@ -90,28 +89,27 @@ def augment_images(input_dir, output_dir, num_augmentations=15): # Optimize the 
             aug_image = augmented['image']
             aug_mask = augmented['mask']
             
-            # Create augmented filenames
+            # Neme the augmented images
             aug_image_filename = f"{image_name}_aug_{aug_idx+1}.tif"
             aug_mask_filename = f"{image_name}_aug_{aug_idx+1}_mask.png"
             
-            # Save augmented image and mask
+            # Save augmented raw and mask images
             cv2.imwrite(os.path.join(output_dir, aug_image_filename), aug_image)
             cv2.imwrite(os.path.join(output_dir, aug_mask_filename), aug_mask)
     
     print(f"Augmentation complete. Files saved to: {output_dir}")
 
+# try multiple methods for input directory if chnages syatem to system
 def get_input_directory():
-    """Get input directory using multiple methods"""
     input_dir = None
-    
     # Method 1: Try using tkinter dialog
     try:
         root = tk.Tk()
         root.withdraw()
         
-        print("Waiting for folder selection dialog to appear...")
+        print("Waiting for folder selection dialog to appear")
         print("If no dialog appears, check your taskbar or behind other windows.")
-        print("Dialog will timeout in 10 seconds if not used.")
+        print("Dialog will timeout in 15 seconds if not used.")
         
         # Force window to front
         root.attributes('-topmost', True)
@@ -121,14 +119,14 @@ def get_input_directory():
         start_time = time.time()
         input_dir = None
         
-        # Give the dialog 10 seconds to be used
-        while time.time() - start_time < 10 and input_dir is None:
-            input_dir = filedialog.askdirectory(title="Select Directory with Original TEM Images and Masks")
+        # Give the dialog 15 seconds to be used
+        while time.time() - start_time < 15 and input_dir is None: # dialog timing can be adjusted as per need, we used 15 sec
+            input_dir = filedialog.askdirectory(title="Select Directory with Original raw TEM and Masks Images")
             root.update_idletasks()
             root.update()
             time.sleep(0.1)
             
-            # Break if directory selected
+            # Break the loop after after directory selection
             if input_dir:
                 break
     except Exception as e:
@@ -148,25 +146,24 @@ def get_input_directory():
     return input_dir
 
 def main():
-    print("TEM Image Augmentation Tool")
-    print("===========================")
+    print("TEM Image Augmentation")
     
     # Get input directory
     input_dir = get_input_directory()
     
     if not input_dir:
-        print("No valid directory provided. Exiting.")
+        print("No valid directory provided.")
         return
     
-    print(f"Selected directory: {input_dir}")
+    print(f"You Selected directory: {input_dir}")
     
     # Create output directory with timestamp
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     output_dir = os.path.join(os.path.dirname(input_dir), f'augmented_images_{timestamp}')
     
-    # Set number of augmentations
-    num_augmentations = 15
-    print(f"Will create {num_augmentations} augmentations per image")
+    # Set number of augmentations per image
+    num_augmentations = 10
+    print(f"{num_augmentations} augmentations per image will be created")
     
     # Perform augmentation
     augment_images(input_dir, output_dir, num_augmentations)
