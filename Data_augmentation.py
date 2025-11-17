@@ -1,5 +1,6 @@
 # Data Augmentation pipeline with albumentation for data diversifation 
 # Imports libraries and dependencies
+# tkinter is used for data seletction and storage dialog boxes locally, for google colab this can be modified to use google drive mount points
 import os
 import numpy as np
 import cv2
