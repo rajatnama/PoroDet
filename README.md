@@ -24,3 +24,5 @@ Uses the trained model to predict nanopore regions on new TEM images.
 Performs post-detection analysis.
 
 All four notebooks/scripts can be run independently in Python (≥3.8) or a Jupyter environment.
+
+The code has been written with help of latest models from anthropic and openAI, and we encourage the users to use these AI tools as well to understand to code, set up environment and deal with dependencies.
