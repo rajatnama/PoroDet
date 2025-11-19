@@ -1,4 +1,4 @@
-#Unet architechure, training, metrics and plotting 
+# Unet architechure, training, metrics plotting 
 # import the required libraries, pytorch for model and training
 
 import os
@@ -22,7 +22,7 @@ try:
 except Exception as e:
     raise ImportError("matics not found. Install it with  pip install scikit-learn`.") from e
 
-# UNet model architeccture, used double conv 
+# U-net model architeccture, used double conv 
 class DoubleConv(nn.Module):
     def __init__(self, in_channels, out_channels, dropout_rate=0.2):
         super().__init__()
@@ -96,7 +96,7 @@ class UNet(nn.Module):
         conv10 = self.conv10(conv9)
         return conv10
 
-# define dataset class. Group files by original images and their augmentations
+# define dataset class and group files by original images and their augmentations
 def get_original_and_augmented_groups(data_dir):
 
     # consider .tif images only
@@ -168,7 +168,7 @@ class Nanopore_Dataset(Dataset):
             placeholder = torch.zeros((1, 1024, 1024), dtype=torch.float32)
             return placeholder, placeholder
 
-# Dfine performance metrics functions
+# Define performance metrics functions
 def dice_coeff(preds_bool, targets_bool, eps=1e-7):
     preds = preds_bool.astype(np.uint8)
     targets = targets_bool.astype(np.uint8)
@@ -424,7 +424,7 @@ def train_nanopore_detector(data_dir, output_dir, train_originals, val_originals
         plt.savefig(os.path.join(output_dir, f'fold_{fold_id}_accuracy_curves.png'))
         plt.close()
 
-        # other validation metric trends
+        # Other validation metric trends
         epochs_range = range(1, len(history['val_loss']) + 1)
         plt.figure(figsize=(10, 6))
         plt.plot(epochs_range, history['val_precision'], label='Val Precision')
@@ -509,7 +509,7 @@ def main():
         print("Not enough original images for 3-fold CV. Need at least 3.")
         return
     
-    # Chnage the number of folds here for cross validation
+    # Change the number of folds here for cross validation
     kf = KFold(n_splits=3, shuffle=True, random_state=42) 
 
     fold_histories = []
@@ -531,7 +531,7 @@ def main():
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
-    # save simple CV summary at base dir
+    # Save simple CV summary at base dir
     summary_csv = os.path.join(base_output_dir, "cv_summary.csv")
     with open(summary_csv, "w", newline="") as f:
         writer = csv.writer(f)
@@ -542,4 +542,5 @@ def main():
 
 
 if __name__ == '__main__':
+
     main()
