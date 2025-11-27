@@ -51,7 +51,7 @@ Each stage is implemented as a standalone Python script.
 All scripts can be run either from a terminal (`python <script>.py`) or from a Jupyter environment.
 
 ---
-We gratefully acknowledge the use of large-language models (Anthropic, OpenAI) as coding assistants during development of this software, and we encourage users to use similar tools to help understand the code, set up their Python environments, and troubleshoot dependencies.
+We acknowledge the use of large-language models (Anthropic, OpenAI) as coding assistants during development of this software, and we encourage users to use similar tools to help understand the code, set up their Python environments, and troubleshoot dependencies.
 
 ## Installation
 
