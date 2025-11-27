@@ -61,3 +61,6 @@ conda create -n porodet python=3.10
 conda activate porodet
 
 pip install -r requirements.txt
+
+---
+We gratefully acknowledge the use of large-language models (Anthropic, OpenAI) as coding assistants during development of this software, and we encourage users to use similar tools to help understand the code, set up their Python environments, and troubleshoot dependencies.
