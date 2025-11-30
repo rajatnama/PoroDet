@@ -48,7 +48,12 @@ Each stage is implemented as a standalone Python script.
   - Computes total nanoporosity percentage and the number of pores vs cracks.  
   - Saves histograms of size, aspect ratio and diameter, as well as coloured overlays highlighting pores and cracks separately.
 
-All scripts can be run either from a terminal (`python <script>.py`) or from a Jupyter environment.
+- `PoroDet_finetune.py`  
+  Fine-tunes an **existing** PoroDet U-Net model (`.pth`) on a new set of TEM images and masks.  
+  - Starts from a pretrained checkpoint (e.g. the Zr-oxide model)  
+  - Optionally freezes the encoder and only updates the decoder  
+  - Reports the same metrics as the main trainer (loss, accuracy, precision, recall, F1, IoU, Dice, PR-AUC, ROC-AUC)  
+  - Saves `finetuned_best_model.pth`, `finetuned_last_epoch.pth`, and a `finetune_metrics.csv` file plus loss/accuracy and PR/ROC plots
 
 ---
 We acknowledge the use of large-language models (Anthropic, OpenAI) as coding assistants during development of this software, and we encourage users to use similar tools to help understand the code, set up their Python environments, and troubleshoot dependencies.
