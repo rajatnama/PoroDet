@@ -1,4 +1,5 @@
-#TEM nanopore detection- complete inference code
+# TEM nanoporosity detection
+# Import necessary libraries 
 import os
 import numpy as np
 import torch
@@ -11,8 +12,7 @@ from matplotlib.colors import LinearSegmentedColormap
 import warnings
 warnings.filterwarnings("ignore")
 
-# Import the UNet class from your training script
-# If in a separate file, you'd need to import it properly
+# Import the same U-net class as in training to ensure the same architechture used for inference
 class DoubleConv(torch.nn.Module):
     def __init__(self, in_channels, out_channels, dropout_rate=0.0):
         super().__init__()
@@ -92,8 +92,9 @@ class UNet(torch.nn.Module):
         conv10 = self.conv10(conv9)
         return conv10
 
+# Load the trained the model
 def load_model(model_path):
-    """Load a trained model from file"""
+    
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = UNet(in_channels=1, out_channels=1).to(device)
     
@@ -110,13 +111,14 @@ def load_model(model_path):
     model.eval()
     return model, device
 
-def predict_nanopores(model, image_path, device, threshold=0.5):
-    """Predict nanopores in a TEM image"""
+# Predict nanoporosity in the new TEM image
+def predict_nanopores(model, image_path, device, threshold=0.5):   # adjust the threshold to detect the more or less pores as per probability map 
     # Read image
     image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     original_image = image.copy()
     
     # Resize to 1024x1024 for prediction
+    # Keep the image size as in the training
     image = cv2.resize(image, (1024, 1024), interpolation=cv2.INTER_AREA)
     
     # Normalize
@@ -141,9 +143,8 @@ def predict_nanopores(model, image_path, device, threshold=0.5):
     
     return original_image, prediction_resized, binary_prediction_resized
 
+# Analyze nanopore statistics from binary mask
 def analyze_nanopores(binary_mask):
-    """Analyze nanopore statistics from binary mask"""
-    # Find contours
     contours, _ = cv2.findContours(
         (binary_mask * 255).astype(np.uint8), 
         cv2.RETR_EXTERNAL, 
@@ -155,7 +156,7 @@ def analyze_nanopores(binary_mask):
     areas = [cv2.contourArea(c) for c in contours]
     perimeters = [cv2.arcLength(c, True) for c in contours]
     
-    # Filter out very small contours (noise)
+    # Filter out very small contours
     min_area = 5  # Adjust as needed
     valid_areas = [a for a in areas if a > min_area]
     
@@ -175,8 +176,8 @@ def analyze_nanopores(binary_mask):
         'porosity': porosity
     }
 
+# Create overlay of nanopore prediction on original image
 def create_overlay(image, prediction, threshold=0.5, alpha=0.6):
-    """Create overlay of nanopore prediction on original image"""
     # Create RGB version of grayscale image
     rgb_image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
     
@@ -192,8 +193,8 @@ def create_overlay(image, prediction, threshold=0.5, alpha=0.6):
     
     return overlay
 
+# Create and save visualization of nanopore detection result
 def visualize_results(original_image, prediction, binary_prediction, metrics, output_path):
-    """Create and save visualization of nanopore detection results"""
     # Normalize images for visualization
     original_norm = original_image.astype(np.float32) / 255
     
@@ -213,7 +214,7 @@ def visualize_results(original_image, prediction, binary_prediction, metrics, ou
     plt.subplot(2, 2, 2)
     plt.imshow(prediction, cmap='hot')
     plt.colorbar(label='Nanopore Probability')
-    plt.title('Nanopore Prediction (Heatmap)')
+    plt.title('Nanopore Prediction probability Heatmap')
     plt.axis('off')
     
     # Binary prediction
@@ -225,7 +226,7 @@ def visualize_results(original_image, prediction, binary_prediction, metrics, ou
     # Overlay
     plt.subplot(2, 2, 4)
     plt.imshow(overlay)
-    plt.title('Nanopore Overlay on TEM Image')
+    plt.title('Nanoporosity Overlay on TEM Image')
     plt.axis('off')
     
     # Add metrics
@@ -241,13 +242,12 @@ def visualize_results(original_image, prediction, binary_prediction, metrics, ou
     
     print(f"Results saved to: {output_path}")
 
+# Save binary prediction as a mask image
 def save_mask_image(binary_prediction, output_path):
-    """Save binary prediction as a mask image"""
     cv2.imwrite(output_path, (binary_prediction * 255).astype(np.uint8))
     print(f"Binary mask saved to: {output_path}")
 
 def main():
-    """Main function for nanopore detection inference"""
     # Select model file
     root = tk.Tk()
     root.withdraw()
@@ -277,7 +277,7 @@ def main():
     output_dir = os.path.join(image_dir, f'nanopore_analysis_{image_name}_{timestamp}')
     os.makedirs(output_dir, exist_ok=True)
     
-    print(f"Starting nanopore analysis for: {image_name}")
+    print(f"Initialozing the nanopore analysis for: {image_name}")
     print(f"Results will be saved to: {output_dir}")
     
     # Load model
@@ -306,7 +306,6 @@ def main():
     metrics_path = os.path.join(output_dir, f"{image_name}_metrics.txt")
     with open(metrics_path, 'w') as f:
         f.write("Nanopore Analysis Results\n")
-        f.write("-------------------------\n")
         f.write(f"Image: {image_name}\n")
         f.write(f"Model: {os.path.basename(model_path)}\n")
         f.write(f"Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")

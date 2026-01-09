@@ -6,16 +6,16 @@ from tkinter import filedialog
 import matplotlib.pyplot as plt
 from scipy.ndimage import label
 
+# Load UNet mask and resize to 1024x1024, keep the image patch size consistent
 def load_mask(mask_path):
-    """Load UNet mask and resize to 1024x1024."""
     mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
     if mask is None:
         raise ValueError(f"Failed to load mask ({mask_path})")
     mask = cv2.resize(mask, (1024, 1024), interpolation=cv2.INTER_NEAREST)
     return mask
 
+# Analyze nanopores using ellipse fitting for aspect ratio 
 def analyze_nanopores(mask, threshold=200, aspect_ratio_threshold=1.5):
-    """Analyze nanopores using ellipse fitting for aspect ratio."""
     _, binary_mask = cv2.threshold(mask, threshold, 255, cv2.THRESH_BINARY)
     labeled_mask, num_features = label(binary_mask)
     total_pixels = binary_mask.size
@@ -65,8 +65,8 @@ def analyze_nanopores(mask, threshold=200, aspect_ratio_threshold=1.5):
     
     return porosity_percentage, sizes, aspect_ratios, diameters, circular_count, elongated_count, circular_mask, elongated_mask
 
+# Create overlay images for circular and elongated nanopores
 def create_overlays(mask, circular_mask, elongated_mask, output_dir, image_name):
-    """Create overlay images for circular and elongated nanopores."""
     mask_rgb = cv2.cvtColor(mask, cv2.COLOR_GRAY2RGB)
     blue = [255, 0, 0]  # Blue for circular
     red = [0, 0, 255]   # Red for elongated
@@ -83,16 +83,15 @@ def create_overlays(mask, circular_mask, elongated_mask, output_dir, image_name)
     cv2.imwrite(elongated_path, elongated_overlay)
     print(f"Elongated overlay saved to: {elongated_path}")
 
+# Generate and save histograms with 0.5 increments on x-axis
 def plot_histograms(sizes, aspect_ratios, diameters, output_dir, image_name):
-    """Generate and save histograms with 0.5 increments on x-axis."""
     os.makedirs(output_dir, exist_ok=True)
-    
     size_min, size_max = min(sizes), max(sizes)
     size_bins = np.arange(np.floor(size_min / 0.5) * 0.5, np.ceil(size_max / 0.5) * 0.5 + 0.5, 0.5)
     plt.figure(figsize=(10, 6))
     plt.hist(sizes, bins=size_bins, color='blue', edgecolor='black')
     plt.title('Histogram of Nanopore Sizes (Area in Pixels)')
-    plt.xlabel('Size (pixels)')
+    plt.xlabel('Size in pixels')
     plt.ylabel('Frequency')
     plt.grid(True, alpha=0.3)
     size_path = os.path.join(output_dir, f'{image_name}_size_histogram.png')
@@ -104,7 +103,7 @@ def plot_histograms(sizes, aspect_ratios, diameters, output_dir, image_name):
     ar_bins = np.arange(np.floor(ar_min / 0.5) * 0.5, np.ceil(ar_max / 0.5) * 0.5 + 0.5, 0.5)
     plt.figure(figsize=(10, 6))
     plt.hist(aspect_ratios, bins=ar_bins, color='orange', edgecolor='black')
-    plt.title('Histogram of Nanopore Aspect Ratios (Major/Minor Axis)')
+    plt.title('Histogram of Nanopore Aspect Ratios')
     plt.xlabel('Aspect Ratio (≥ 1)')
     plt.ylabel('Frequency')
     plt.grid(True, alpha=0.3)
@@ -117,7 +116,7 @@ def plot_histograms(sizes, aspect_ratios, diameters, output_dir, image_name):
     dia_bins = np.arange(np.floor(dia_min / 0.5) * 0.5, np.ceil(dia_max / 0.5) * 0.5 + 0.5, 0.5)
     plt.figure(figsize=(10, 6))
     plt.hist(diameters, bins=dia_bins, color='green', edgecolor='black')
-    plt.title('Histogram of Nanopore Equivalent Diameters (Pixels)')
+    plt.title('Histogram of Nanopore Equivalent Diameters in Pixels')
     plt.xlabel('Diameter (pixels)')
     plt.ylabel('Frequency')
     plt.grid(True, alpha=0.3)
@@ -126,8 +125,9 @@ def plot_histograms(sizes, aspect_ratios, diameters, output_dir, image_name):
     plt.close()
     print(f"Diameter histogram saved to: {diameter_path}")
 
+# Process one mask to analyze nanoporosity, shapes, and generate overlays
 def process_single_mask(mask_path, output_dir, aspect_ratio_threshold=1.5):
-    """Process one mask to analyze nanoporosity, shapes, and generate overlays."""
+
     os.makedirs(output_dir, exist_ok=True)
     image_name = os.path.splitext(os.path.basename(mask_path))[0].replace('_mask', '')
     
