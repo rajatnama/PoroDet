@@ -1,10 +1,32 @@
-# Nano-porosity detection in TEM images using U-Net and computer vision
+# PoroDet:Nano-porosity detection in TEM images using U-Net and computer vision
 
-This repository contains the full workflow for contrast-based detection and analysis of nanoporosities in Fresnel-contrast transmission electron microscope (TEM) images using a U-Net convolutional neural network (CNN).
+**PoroDet** is a Python package for the contrast-based detection and analysis of nanoporosities in Fresnel-contrast transmission electron microscope (TEM) images. It utilizes a U-Net convolutional neural network (CNN) to segment and quantify pores and cracks.
 
 The current implementation was developed for oxides formed on zirconium (Zr) alloys, but the same method can be adapted to other materials and microscopy datasets where pores and cracks appear as bright/dark Fresnel features.
 
 ---
+
+## Installation
+
+### Option 1: Install directly from GitHub (Recommended for Colab)
+You can install the package directly into your environment using pip:
+```bash
+pip install git+[https://github.com/Deep7285/PoroDet.git](https://github.com/Deep7285/PoroDet.git)
+
+### Option 2 : Clone directly from GitHub and Install Locally
+
+# 1. Clone the repository
+git clone [https://github.com/Deep7285/PoroDet.git](https://github.com/Deep7285/PoroDet.git)
+cd PoroDet
+
+# 2. Create environment (optional but recommended)
+( Visit the conda website to create the enviroment: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+conda create -n porodet python=3.10 
+conda activate porodet
+
+# 3. Install the package
+pip install .
+
 
 ## Overview of the workflow
 
