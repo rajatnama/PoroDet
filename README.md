@@ -35,8 +35,8 @@ pip install git+[https://github.com/Deep7285/PoroDet.git](https://github.com/Dee
 Once installed, the package can be imported (import porodet) in any Python script or Jupyter Notebook. The package contain five main tools:
 
 ## Step 2:  Data Augmentation
-Increase dataset diversity by applying physics-aware transformations and Augments TEM images and corresponding binary masks to improve robustness to variations in Fresnel contrast.  
-  - Expects grayscale `.tif` images with matching `*_mask.png` binary masks.  
+Increase dataset diversity by applying augmentation on input TEM images and corresponding binary masks to improve robustness to variations in Fresnel contrast.  
+  - Expects grayscale `.tif` images with matching `.png` binary masks.  
   - Applies flips, rotations, brightness/contrast adjustments, gamma/CLAHE, noise, blur and mild geometric distortions.  
   - Saves original and augmented image–mask pairs into a new timestamped output directory.
 ```bash
@@ -49,7 +49,7 @@ Note:
   2. Keep the square size input images. For example if input images are 4096X1024 pixel then image will be distored during augmentation and    training performance will be affected.
 
 ## Step 3: Training the U-net model
-Trains a U-Net CNN on the (augmented) image–mask pairs for pixel-wise nanopore segmentation.  
+Trains a U-Net CNN on the image–mask pairs for pixel-wise nanopore segmentation.  
   - Resizes images and masks to 1024×1024 pixels.  
   - Uses `BCEWithLogitsLoss` and reports training/validation loss and accuracy, as well as segmentation metrics (precision, recall, F1/Dice, IoU, PR–AUC, ROC–AUC).  
   - Performs K-fold cross-validation over the original images (default K = 3).  
@@ -60,7 +60,7 @@ porodet.train()
 ```
 ## Step 4: Nanoporosities detetions (inferences)
 Applies a trained U-Net model to a new TEM image.  
-  - Loads a `.pth` checkpoint produced by `U_net_training.py`.  
+  - Loads a `.pth` trained model.  
   - Produces a nanopore probability map, a binary nanopore mask and an overlay on the original TEM image.  
   - Computes basic statistics such as total pore count, total pore area and nanoporosity (%) for the analysed image.  
   - Saves a composite figure (`<image_name>_analysis.png`), the binary mask (`<image_name>_mask.png`) and a metrics text file.
@@ -85,7 +85,6 @@ Fine-tunes an **existing** PoroDet U-Net model (`.pth`) on a new set of TEM imag
   - Starts from a pretrained checkpoint (e.g. the Zr-oxide model)  
   - Optionally freezes the encoder and only updates the decoder  
   - Reports the same metrics as the main trainer (loss, accuracy, precision, recall, F1, IoU, Dice, PR-AUC, ROC-AUC)  
-  - Saves `finetuned_best_model.pth`, `finetuned_last_epoch.pth`, and a `finetune_metrics.csv` file plus loss/accuracy and PR/ROC plots
 ```bash
 # Select pretrained model and new dataset
 porodet.finetune()
