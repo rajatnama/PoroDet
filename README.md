@@ -98,10 +98,11 @@ Any contribution or suggestions to the packege are welcome.
 ## Authers
 Rajat Nama (University of Oxford)
   - github: https://github.com/rajatnama
-  - wedsite:\
-Deepak Kumar (Indian Institute of Technology Madras, India)\
+  - web: https://nanoanalysis.web.ox.ac.uk/people/rajat-nama
+
+Deepak Kumar (Indian Institute of Technology Madras, India)
   - github: https://github.com/Deep7285
-  - website: https://sites.google.com/view/deepak7285/home
+  - web: https://sites.google.com/view/deepak7285/home
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
