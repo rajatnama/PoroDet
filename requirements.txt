@@ -1,7 +1,10 @@
 numpy
 torch
 albumentations
-opencv-python
 matplotlib
 scipy
 tqdm
+opencv-python-headless
+torchvision
+scikit-learn
+scipy
