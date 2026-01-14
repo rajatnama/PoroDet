@@ -16,18 +16,20 @@ Install the package directly into your environment using pip:
 pip install git+[https://github.com/Deep7285/PoroDet.git](https://github.com/Deep7285/PoroDet.git)
 
 ### Option 2 : Clone directly from GitHub and Install Locally
+  1. Clone the repository:
+  git clone [https://github.com/Deep7285/PoroDet.git](https://github.com/Deep7285/PoroDet.git)
+  cd PoroDet
 
-# 1. Clone the repository
-git clone [https://github.com/Deep7285/PoroDet.git](https://github.com/Deep7285/PoroDet.git)
-cd PoroDet
-
-# 2. Create environment (optional but recommended)
-(Visit the conda website to create the enviroment: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
-conda create -n porodet python=3.10 
-conda activate porodet
-
-# 3. Install the package
-pip install .
+  2. Create environment (optional but recommended): 
+  (Visit the conda website to create the enviroment: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+  ```bash
+  conda create -n porodet python=3.10 
+  conda activate porodet 
+  ```
+  3. Install the package: 
+  ```bash
+  pip install .
+  ```
 
 ## Usage
 Once installed, the package can be imported (import porodet) in any Python script or Jupyter Notebook. The package contain five main tools:
@@ -35,9 +37,9 @@ Once installed, the package can be imported (import porodet) in any Python scrip
 ## Step 2:  Data Augmentation
 Increase dataset diversity by applying physics-aware transformations (contrast, brightness, noise, rotation).
 
-# Note: 
+Note: 
   1. By default the the pacake resize the input image into 1024X1024 pixels. 
-  2. Keep the square size input images. For example if input images are 4096X1024 pixel then image will be distored during augmentation and   training performance will be affected.
+  2. Keep the square size input images. For example if input images are 4096X1024 pixel then image will be distored during augmentation and    training performance will be affected.
 
   import porodet
   # This triggers the GUI for folder selection
