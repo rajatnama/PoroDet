@@ -94,7 +94,7 @@ porodet.finetune()
 This software was developed with the assistance of large language models (LLMs) for code generation and debugging support.
 Any contribution or suggestions to the packege are welcome.
 
-## Authers
+## Authors
 Rajat Nama (University of Oxford)
   - github: https://github.com/rajatnama
   - web: https://nanoanalysis.web.ox.ac.uk/people/rajat-nama
