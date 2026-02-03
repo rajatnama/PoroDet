@@ -347,7 +347,7 @@ def main():
     )
 
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-        optimizer, mode="min", factor=0.5, patience=2, verbose=True
+        optimizer, mode="min", factor=0.5, patience=2
     )
 
     best_val = float("inf")

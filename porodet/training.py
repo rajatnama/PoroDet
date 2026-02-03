@@ -138,7 +138,7 @@ def train_nanopore_detector(data_dir, output_dir, train_originals, val_originals
     model = UNet(in_channels=1, out_channels=1, dropout_rate=0.2).to(device)
     criterion = nn.BCEWithLogitsLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau( optimizer, mode='min', factor=0.5, patience=2, verbose=True)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau( optimizer, mode='min', factor=0.5, patience=2)
 
     best_val_loss = float('inf')
     early_stop_counter = 0
