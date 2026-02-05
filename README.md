@@ -89,9 +89,9 @@ Fine-tunes an **existing** PoroDet U-Net model (`.pth`) on a new set of TEM imag
 # Select pretrained model and new dataset
 porodet.finetune()
 ```
-## Instructions to use the Google colab 
-
+## Instructions to use the Google colab
 User who preferes to use the google colab may use the google colab notebook (Training_google_colab.ipynb) in the repository. All inststruction are given step by step get the output.
+
 ---
 ## Development Note
 This software was developed with the assistance of large language models (LLMs) for code generation and debugging support.
