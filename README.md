@@ -45,8 +45,8 @@ import porodet
 porodet.augment()
 ```
 Note: 
-  1. By default the pacake resize the input image into 1024X1024 pixels. 
-  2. Keep the square size input images. For example, if input images are 4096X1024 pixel then the image will be distored during augmentation and    training performance will be affected.
+  1. By default, the pacake resizes the input image into 1024X1024 pixels. 
+  2. Keep the square size input images. For example, if input images are 4096X1024 pixel then the image will be distorted during augmentation and    training performance will be affected.
 
 ## Step 3: Training the U-net model
 Trains a U-Net CNN on the image–mask pairs for pixel-wise nanopore segmentation.  
@@ -81,7 +81,7 @@ porodet.analyze()
 ```
 
 ## Additional Step if needed to fine-tune the trained model or fine-tune the pre-trained model
-Fine-tunes an existing PoroDet U-Net model (`.pth`) on a new set of TEM images and masks and allows freezing the encoder layers to adapt the model to new materials with smaller  datasets.
+Fine-tunes an existing PoroDet U-Net model (`.pth`) on a new set of TEM images and masks, and allows freezing the encoder layers to adapt the model to new materials with smaller  datasets.
   - Starts from a pretrained checkpoint (e.g. the Zr-oxide model)  
   - Optionally freezes the encoder and only updates the decoder.
   - Reports the same metrics as the main trainer (loss, accuracy, precision, recall, F1, IoU, Dice, PR-AUC, ROC-AUC)  
@@ -90,7 +90,7 @@ Fine-tunes an existing PoroDet U-Net model (`.pth`) on a new set of TEM images a
 porodet.finetune()
 ```
 ## Instructions to use the Google Colab
-User who preferes to use the Google Colab may use the google colab notebook (Training_google_colab.ipynb) in the repository. All instructions are given step by step get the output.
+User who preferes to use the Google Colab may use the Google Colab notebook (Training_google_colab.ipynb) in the repository. All instructions are given step by step get the output.
 
 ---
 ## Development Note
