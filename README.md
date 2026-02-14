@@ -15,18 +15,22 @@ Install the package directly into your environment using pip:
 ```python
 pip install git+[https://github.com/Deep7285/PoroDet.git](https://github.com/Deep7285/PoroDet.git)
 ```
-### Option 2 : Install the porodet repository (Recommended for Local machine run)**  
+### Option 2 : Install the repository (Recommended for Local Machine)**  
 Install the porodet repository in the terminal if you are using  
 
 **Windows:**  
-Run the following coomand in the terminal (a VS code provide the terminal)  
+Run the following command in the terminal (e.g., Command Prompt, Anaconda Prompt, or VS Code terminal)  
 ```bash  
 C:\users\home> pip install git+https://github.com/Deep7285/Porodet.git  
 ```
  
 **Linux:**  
-1. Create the conda enviroment (optional but recommended). read how to create the conda environment here: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
-2. Run the following coomand in the terminal in created environment (a VS code provide the terminal).  
+1. Create the conda enviroment (optional but recommended). read how to create the conda environment here: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html  
+```bash
+conda create -n porodet python=3.10
+conda activate porodet  
+```
+2. Run the following command in the terminal in created environment (a VS code provide the terminal).  
 ```bash
 (base) user1@my_pc:~$ conda activate my_new_env  
 (my_new_env) user1@my_pc:~& pip install git+https://github.com/Deep7285/Porodet.git
@@ -45,7 +49,7 @@ import porodet
 porodet.augment()
 ```
 Note: 
-  1. By default, the packae resizes the input image into 1024X1024 pixels. 
+  1. By default, the package resizes the input image into 1024X1024 pixels. 
   2. Keep the square size input images. For example, if input images are 4096X1024 pixel then the image will be distorted during augmentation and    training performance will be affected.
 
 ## Step 3: Training the U-net model
@@ -90,10 +94,10 @@ Fine-tunes an existing PoroDet U-Net model (`.pth`) on a new set of TEM images a
 porodet.finetune()
 ```
 ## Instructions to run the package using the Google Colab  
-User who preferes to use the Google Colab may use the Google Colab notebook (Training_google_colab.ipynb) in the repository. All instructions are given step by step get the output.   
+User who prefers to use the Google Colab may use the Google Colab notebook (Training_google_colab.ipynb) in the repository. All instructions are given step by step get the output.   
 
 ## Instructions to run the package using local machine    
-User who preferes to use the local machine may use the jupyter notebook (jupyter_guide_for_local_machine.ipynb) in the repository. All instructions are given step by step get the output.  
+User who prefers to use the local machine may use the jupyter notebook (jupyter_guide_for_local_machine.ipynb) in the repository. All instructions are given step by step get the output.  
 
 ---
 ## Development Note
