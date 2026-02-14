@@ -23,5 +23,5 @@ __all__ = [
 ]
 
 # Package metadata
-__version__ = '0.1.0'
+__version__ = 'v1.0.0'
 __author__ = 'Deep7285', 'rajatnama'
