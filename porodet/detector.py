@@ -22,7 +22,11 @@ def load_model(model_path):
     model = UNet(in_channels=1, out_channels=1).to(device)
     
     # Load weights
-    checkpoint = torch.load(model_path, map_location=device)
+    # Added weights_only=False for PyTorch 2.6+ compatibility
+    try:
+        checkpoint = torch.load(model_path, map_location=device, weights_only=False)
+    except TypeError:
+        checkpoint = torch.load(model_path, map_location=device)
     if 'model_state_dict' in checkpoint:
         model.load_state_dict(checkpoint['model_state_dict'])
         print(f"Loaded model from epoch {checkpoint.get('epoch', 'unknown')} "
