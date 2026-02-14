@@ -12,25 +12,25 @@ The current implementation was developed for oxides formed on zirconium (Zr) all
 
 ### Option 1: Install directly from GitHub (Recommended for Colab)
 Install the package directly into your environment using pip:
-
+```python
 pip install git+[https://github.com/Deep7285/PoroDet.git](https://github.com/Deep7285/PoroDet.git)
+```
+### Option 2 : Install the porodet repository (Recommended for Local machine run)**  
+Install the porodet repository in the terminal if you are using  
 
-### Option 2 : Clone directly from GitHub and Install Locally
-  1. Clone the repository:
-  git clone [https://github.com/Deep7285/PoroDet.git](https://github.com/Deep7285/PoroDet.git)
-  cd PoroDet
-
-  2. Create environment (optional but recommended): 
-  (Visit the conda website to create the environment: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
-  ```bash
-  conda create -n porodet python=3.10 
-  conda activate porodet 
-  ```
-  3. Install the package: 
-  ```bash
-  pip install .
-  ```
-
+**Windows:**  
+Run the following coomand in the terminal (a VS code provide the terminal)  
+```bash  
+C:\users\home> pip install git+https://github.com/Deep7285/Porodet.git  
+```
+ 
+**Linux:**  
+1. Create the conda enviroment (optional but recommended). read how to create the conda environment here: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
+2. Run the following coomand in the terminal in created environment (a VS code provide the terminal).  
+```bash
+(base) user1@my_pc:~$ conda activate my_new_env  
+(my_new_env) user1@my_pc:~& pip install git+https://github.com/Deep7285/Porodet.git
+```
 ## Usage
 Once installed, the package can be imported (import porodet) in any Python script or Jupyter Notebook. The package contains five main tools:
 
@@ -39,13 +39,13 @@ Increase dataset diversity by applying augmentation to input TEM images and corr
   - Expects grayscale `.tif` images with matching `.png` binary masks.  
   - Applies flips, rotations, brightness/contrast adjustments, gamma/CLAHE, noise, blur and mild geometric distortions.  
   - Saves original and augmented image–mask pairs into a new timestamped output directory.
-```bash
+```python
 import porodet
 # This triggers the GUI for folder selection
 porodet.augment()
 ```
 Note: 
-  1. By default, the pacake resizes the input image into 1024X1024 pixels. 
+  1. By default, the packae resizes the input image into 1024X1024 pixels. 
   2. Keep the square size input images. For example, if input images are 4096X1024 pixel then the image will be distorted during augmentation and    training performance will be affected.
 
 ## Step 3: Training the U-net model
@@ -54,7 +54,7 @@ Trains a U-Net CNN on the image–mask pairs for pixel-wise nanopore segmentatio
   - Uses `BCEWithLogitsLoss` and reports training/validation loss and accuracy, as well as segmentation metrics (precision, recall, F1/Dice, IoU, PR–AUC, ROC–AUC).  
   - Performs K-fold cross-validation over the original images (default K = 3).  
   - Saves best model checkpoints, per-fold metric CSV files and plots (loss curves, accuracy curves, PR/ROC curves).
-```bash
+```python
 # Starts the training workflow
 porodet.train()
 ```
@@ -64,7 +64,7 @@ Applies a trained U-Net model to a new TEM image.
   - Produces a nanopore probability map, a binary nanopore mask and an overlay on the original TEM image.  
   - Computes basic statistics such as total pore count, total pore area and nanoporosity (%) for the analysed image.  
   - Saves a composite figure (`<image_name>_analysis.png`), the binary mask (`<image_name>_mask.png`) and a metrics text file.
-```bash
+```python
 # Select your model and target image via GUI
 porodet.detect()
 ```
@@ -75,7 +75,7 @@ Performs detailed post-processing on a UNet-generated pore mask.
   - Classifies objects as nanopores (approximately circular, low aspect ratio) or nanocracks (elongated, high aspect ratio) based on a user-defined aspect-ratio threshold.  
   - Computes the total nanoporosity percentage and the number of pores vs cracks.  
   - Saves histograms of size, aspect ratio and diameter, as well as coloured overlays highlighting pores and cracks separately.
-```bash
+```python
 # process a single mask file
 porodet.analyze()
 ```
@@ -85,12 +85,15 @@ Fine-tunes an existing PoroDet U-Net model (`.pth`) on a new set of TEM images a
   - Starts from a pretrained checkpoint (e.g. the Zr-oxide model)  
   - Optionally freezes the encoder and only updates the decoder.
   - Reports the same metrics as the main trainer (loss, accuracy, precision, recall, F1, IoU, Dice, PR-AUC, ROC-AUC)  
-```bash
+```python
 # Select pretrained model and new dataset
 porodet.finetune()
 ```
-## Instructions to use the Google Colab
-User who preferes to use the Google Colab may use the Google Colab notebook (Training_google_colab.ipynb) in the repository. All instructions are given step by step get the output.
+## Instructions to run the package using the Google Colab  
+User who preferes to use the Google Colab may use the Google Colab notebook (Training_google_colab.ipynb) in the repository. All instructions are given step by step get the output.   
+
+## Instructions to run the package using local machine    
+User who preferes to use the local machine may use the jupyter notebook (jupyter_guide_for_local_machine.ipynb) in the repository. All instructions are given step by step get the output.  
 
 ---
 ## Development Note
