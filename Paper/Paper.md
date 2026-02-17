@@ -28,9 +28,6 @@ affiliations:
 date: 18 February 2026
 ---
 
-# Summary
-
-
 ## Summary
 PoroDet is an open-source Python workflow for supervised feature extraction from transmission electron microscopy (TEM) images. The software provides a task-specific end-to-end pipeline, integrating dataset preparation, model training, batch inference and quantitative post processing within a fully scriptable and reproducible framework. Whilst originally developed for nanopores and nanocracks in Fresnel contrast TEM images, the workflow is designed to be adaptable to other TEM feature classes through training with user supplied image mask annotations.
 TEM images commonly exhibit abstract, acquisition-dependent contrast, strong variability between datasets, and limited availability of annotated training data. PoroDet addresses these constraints by training a standard encoder–decoder convolutional neural network based on the U-Net architecture [1]. The workflow supports the training either from scratch or via fine-tuning (transfer learning), while treating training and data augmentation as standard components of the workflow rather than specialized steps.
