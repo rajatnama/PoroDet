@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+
+title: "PoroDet: Deep learning based detection and quantification of features in TEM images"
+
+authors:
+  - family-names: Nama
+    given-names: Rajat
+    affiliation: Department of Materials, University of Oxford
+  - family-names: Kumar
+    given-names: Deepak
+    affiliation: Indian Institute of Technology Madras
+  - family-names: Choudhury
+    given-names: Tahmid
+    affiliation: Department of Materials, University of Oxford
+  - family-names: Grovenor
+    given-names: Chris
+    affiliation: Department of Materials, University of Oxford
+  - family-names: Lozano-Perez
+    given-names: Sergio
+    affiliation: Department of Materials, University of Oxford
+
+version: "0.1.0"
+date-released: 2026-02-16
+
+license: MIT
+
+repository-code: "https://github.com/rajatnama/PoroDet"
