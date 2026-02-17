@@ -35,16 +35,27 @@ The authors gratefully acknowledges the Department of Materials and the David Co
 
 ## References
 [1] Ronneberger O, Fischer P, Brox T (2015). U-Net: Convolutional networks for biomedical image segmentation. MICCAI, LNCS 9351, 234–241.
+
 [2] Botifoll M, Madireddy S, Li Z, Panagiotopoulos A, Haigh SJ, Prestat E, Susi T (2022). Machine learning in electron microscopy for advanced nanocharacterization. Nanoscale Horizons, 7, 1086–1108.
+
 [3] Breiman L (2001). Random forests. Machine Learning, 45, 5–32.
+
 [4] Horwath JP, Zakharov DN, Mégret R, Stach EA (2020). Understanding important features of deep learning models for segmentation of high resolution transmission electron microscopy images. npj Computational Materials, 6, 108.
+
 [5] Paszke A et al. (2019). PyTorch: An imperative style high performance deep learning library. NeurIPS, 32.
+
 [6] Harris CR et al. (2020). Array programming with NumPy. Nature, 585, 357–362.
+
 [7] Virtanen P et al. (2020). SciPy 1.0: Fundamental algorithms for scientific computing in Python. Nature Methods, 17, 261–272.
+
 [8] Bradski G (2000). The OpenCV Library. Dr. Dobb’s Journal of Software Tools.
+
 [9] Hunter JD (2007). Matplotlib: A 2D graphics environment. Computing in Science & Engineering, 9(3), 90–95.
+
 [10] Pedregosa F et al. (2011). Scikit-learn: Machine learning in Python. Journal of Machine Learning Research, 12, 2825–2830.
+
 [11] McKinney W (2010). Data structures for statistical computing in Python. Proceedings of the 9th Python in Science Conference, 51–56.
+
 [12] Buslaev A et al. (2020). Albumentations: Fast and flexible image augmentations. Information, 11(2), 125.
 
 
