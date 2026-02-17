@@ -13,7 +13,7 @@ authors:
   - name: Deepak Kumar
     affiliation: 2
     corresponding: true
-  - name: Tahmid Choudhary
+  - name: Tahmid Choudhury
     affiliation: 1
   - name: Chris Grovenor
     affiliation: 1
@@ -22,6 +22,7 @@ authors:
 affiliations:
   - name: Department of Materials, University of Oxford, Parks Road, Oxford OX1 3PH, UK
     index: 1
+    
   - name: Indian Institute of Technology Madras, Guindy, Chennai, Tamil Nadu, 600036, India
     index: 2
 date: 18 February 2026
