@@ -24,3 +24,29 @@ After training, the pipeline performs batch inference and applies lightweight po
 ![](Figures/Figure.png)
 
 Figure shows representative results from a Fresnel-contrast TEM image analysed with PoroDet. The sample was prepared by FIB milling and is approximately 50 nm thick. The model was trained on annotated nanoporosities in Zr-oxide layers formed during corrosion of a commercial nuclear Zr alloy (X2®), acquired at 300 kV, 100 kX magnification, and −10 μm defocus. Panel (a) shows the raw image, (b) the pore probability map, (c) the binarized segmentation mask, and (d) an overlay of detected features. In this example, nanopores and nanocracks were treated as a single feature class during training and were distinguished during post-processing using shape-based descriptors such as aspect ratio. Quantitative extracted metrics are shown in the table below.
+| Metric              | Value     |
+|---------------------|-----------|
+| Total nanopores     | 151       |
+| Average pore area   | 1942 px²  |
+| Porosity            | 5.63 %    |
+
+## Acknowledgements
+The authors gratefully acknowledges the Department of Materials and the David Cockayne Centre for Electron Microscopy (DCCEM), University of Oxford, for providing access to TEM facilities and technical support. The author also thanks Westinghouse Electric for supplying the Zr alloys and the University of Manchester for performing the corrosion of these alloys.
+
+## References
+[1] Ronneberger O, Fischer P, Brox T (2015). U-Net: Convolutional networks for biomedical image segmentation. MICCAI, LNCS 9351, 234–241.
+[2] Botifoll M, Madireddy S, Li Z, Panagiotopoulos A, Haigh SJ, Prestat E, Susi T (2022). Machine learning in electron microscopy for advanced nanocharacterization. Nanoscale Horizons, 7, 1086–1108.
+[3] Breiman L (2001). Random forests. Machine Learning, 45, 5–32.
+[4] Horwath JP, Zakharov DN, Mégret R, Stach EA (2020). Understanding important features of deep learning models for segmentation of high resolution transmission electron microscopy images. npj Computational Materials, 6, 108.
+[5] Paszke A et al. (2019). PyTorch: An imperative style high performance deep learning library. NeurIPS, 32.
+[6] Harris CR et al. (2020). Array programming with NumPy. Nature, 585, 357–362.
+[7] Virtanen P et al. (2020). SciPy 1.0: Fundamental algorithms for scientific computing in Python. Nature Methods, 17, 261–272.
+[8] Bradski G (2000). The OpenCV Library. Dr. Dobb’s Journal of Software Tools.
+[9] Hunter JD (2007). Matplotlib: A 2D graphics environment. Computing in Science & Engineering, 9(3), 90–95.
+[10] Pedregosa F et al. (2011). Scikit-learn: Machine learning in Python. Journal of Machine Learning Research, 12, 2825–2830.
+[11] McKinney W (2010). Data structures for statistical computing in Python. Proceedings of the 9th Python in Science Conference, 51–56.
+[12] Buslaev A et al. (2020). Albumentations: Fast and flexible image augmentations. Information, 11(2), 125.
+
+
+
+
