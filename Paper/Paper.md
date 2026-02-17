@@ -51,11 +51,13 @@ After training, the pipeline performs batch inference and applies lightweight po
 ![](Figures/Figure.png)
 
 Figure shows representative results from a Fresnel-contrast TEM image analysed with PoroDet. The sample was prepared by FIB milling and is approximately 50 nm thick. The model was trained on annotated nanoporosities in Zr-oxide layers formed during corrosion of a commercial nuclear Zr alloy (X2®), acquired at 300 kV, 100 kX magnification, and −10 μm defocus. Panel (a) shows the raw image, (b) the pore probability map, (c) the binarized segmentation mask, and (d) an overlay of detected features. In this example, nanopores and nanocracks were treated as a single feature class during training and were distinguished during post-processing using shape-based descriptors such as aspect ratio. Quantitative extracted metrics are shown in the table below.
-| Metric              | Value     |
-|---------------------|-----------|
-| Total nanopores     | 151       |
-| Average pore area   | 1942 px²  |
-| Porosity            | 5.63 %    |
+
+| Metric | Value |
+|---|---:|
+| Total nanopores | 151 |
+| Average pore area | 1942 px^2^ |
+| Porosity | 5.63% |
+
 
 ## Acknowledgements
 The authors gratefully acknowledges the Department of Materials and the David Cockayne Centre for Electron Microscopy (DCCEM), University of Oxford, for providing access to TEM facilities and technical support. The author also thanks Westinghouse Electric for supplying the Zr alloys and the University of Manchester for performing the corrosion of these alloys.
