@@ -1,8 +1,34 @@
-PoroDet: Deep learning based detection and quantification of features in TEM images
+---
+title: "PoroDet: Deep learning based detection and quantification of features in TEM images"
+tags:
+  - Python
+  - electron microscopy
+  - TEM
+  - image segmentation
+  - deep learning
+authors:
+  - name: Rajat Nama
+    affiliation: 1
+    corresponding: true
+  - name: Deepak Kumar
+    affiliation: 2
+    corresponding: true
+  - name: Tahmid Choudhary
+    affiliation: 1
+  - name: Chris Grovenor
+    affiliation: 1
+  - name: Sergio Lozano-Perez
+    affiliation: 1
+affiliations:
+  - name: Department of Materials, University of Oxford, Parks Road, Oxford OX1 3PH, UK
+    index: 1
+  - name: Indian Institute of Technology Madras, Guindy, Chennai, Tamil Nadu, 600036, India
+    index: 2
+date: 18 February 2026
+---
 
-Rajat Nama<sup>a</sup>, Deepak Kumar<sup>b</sup>, Tahmid Choudhary<sup>a</sup>, Chris Grovenor<sup>a</sup>, Sergio Lozano-Perez<sup>a</sup>  
-<sup>a</sup> Department of Materials, University of Oxford, Parks Road, Oxford OX1 3PH, UK  
-<sup>b</sup> Indian Institute of Technology Madras, Guindy, Chennai, Tamil Nadu 600036, India
+# Summary
+
 
 ## Summary
 PoroDet is an open-source Python workflow for supervised feature extraction from transmission electron microscopy (TEM) images. The software provides a task-specific end-to-end pipeline, integrating dataset preparation, model training, batch inference and quantitative post processing within a fully scriptable and reproducible framework. Whilst originally developed for nanopores and nanocracks in Fresnel contrast TEM images, the workflow is designed to be adaptable to other TEM feature classes through training with user supplied image mask annotations.
